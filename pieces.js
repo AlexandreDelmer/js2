@@ -39,3 +39,33 @@ for(let i = 0; i < pieces.length; i++){
     pieceElement.appendChild(descriptionElement)
     pieceElement.appendChild(disponibiliteElement)
 }
+
+// Récupérer le btn trier parp rix croissant
+const btnTrier = document.querySelector(".btn-trier")
+
+
+// Function pour trier par prix croissant
+btnTrier.addEventListener("click", ()=>{
+
+    const piecesPrixCroissant = Array.from(pieces)
+
+    piecesPrixCroissant.sort(function(a,b){
+        return a.prix - b.prix
+    })
+    console.log(piecesPrixCroissant)
+})
+
+// Récupérer le btn trier par la disponibilité des pieces
+const btnFiltrer = document.querySelector(".btn-filtrer")
+
+    // Function pour trier par disponibilité
+btnFiltrer.addEventListener("click", ()=>{
+
+    const piecesFiltrees = pieces.filter(function(pieces){
+        return pieces.prix <= 35
+    })
+
+    console.log(piecesFiltrees)
+})
+
+
