@@ -1,6 +1,8 @@
 const reponse = await fetch("pieces-autos.json")
 const pieces = await reponse.json()
 
+console.log(pieces)
+
 for(let i = 0; i < pieces.length; i++){
 
     // Récupérer la section fiches
@@ -100,14 +102,34 @@ for(let i = pieces.length -1; i >= 0 ; i--){
         noms.splice(i,1)
     }
 }
-console.log(noms)
 
 const abordableElement = document.createElement("ul")
 
 const abordable = document.querySelector(".abordables").appendChild(abordableElement)
 
-For(let i=0 ; i < noms.length; i++){
+for(let i=0 ; i < noms.length; i++){
     const nomElement = document.createElement("li")
-    nomElement.innerText = noms[i].nom
+    nomElement.innerText = noms[i]
     abordableElement.appendChild(nomElement)
 }
+
+const dispo = pieces.map(pieces => `${pieces.nom} ${pieces.prix}`)
+
+for(let i = pieces.length -1 ; i >= 0 ; i--){
+    if(pieces[i].disponibilite === false){
+        dispo.splice(i,1)
+    }
+}
+
+const disponiblesElement = document.createElement("ul")
+
+const disponible = document.querySelector(".disponibles").appendChild(disponiblesElement)
+
+for(let i = 0 ; i < dispo.length ; i++){
+    const nomDispoElement = document.createElement("li")
+    nomDispoElement.innerText = dispo[i]
+    disponiblesElement.appendChild(nomDispoElement)
+}
+
+console.log(dispo)
+
