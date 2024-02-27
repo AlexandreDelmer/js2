@@ -43,10 +43,19 @@ for(let i = 0; i < pieces.length; i++){
 // Récupérer le btn trier parp rix croissant
 const btnTrier = document.querySelector(".btn-trier")
 
+// Récupérer le btn trier par la disponibilité des pieces
+const btnFiltrer = document.querySelector(".btn-filtrer")
+
+// Récupérer le bouton filtrer par description
+const btnFiltrerDescription = document.querySelector(".btn-nodesc")
+
+// Récupérer le bouton filtrer par prix décroissant
+const btnFiltrerPrixDecroissant = document.querySelector(".btn-decroissant")
+
+
 
 // Function pour trier par prix croissant
 btnTrier.addEventListener("click", ()=>{
-
     const piecesPrixCroissant = Array.from(pieces)
 
     piecesPrixCroissant.sort(function(a,b){
@@ -55,17 +64,50 @@ btnTrier.addEventListener("click", ()=>{
     console.log(piecesPrixCroissant)
 })
 
-// Récupérer le btn trier par la disponibilité des pieces
-const btnFiltrer = document.querySelector(".btn-filtrer")
+// Function pour trier par prix decroissant
+btnFiltrerPrixDecroissant.addEventListener("click", ()=>{
+    const piecesPrixDecroissant = Array.from(pieces)
 
-    // Function pour trier par disponibilité
+    piecesPrixDecroissant.sort(function(a,b){
+        return b.prix - a.prix
+    })
+    console.log(piecesPrixDecroissant)
+})
+
+// Function pour trier par disponibilité
 btnFiltrer.addEventListener("click", ()=>{
-
     const piecesFiltrees = pieces.filter(function(pieces){
         return pieces.prix <= 35
     })
-
     console.log(piecesFiltrees)
 })
 
+// Function pour filtrer par description
+btnFiltrerDescription.addEventListener("click", ()=>{
+    const pieceDescription = pieces.filter(function(pieces){
+        return pieces.description 
+    })
+    console.log(pieceDescription)
+})
 
+
+// Créer une nouvelle liste comportant uniquement tous les noms des pieces
+const noms = pieces.map(pieces => pieces.nom)
+
+// Supprimer toutes les pièces dont le prix est > 35€
+for(let i = pieces.length -1; i >= 0 ; i--){
+    if(pieces[i].prix > 35){
+        noms.splice(i,1)
+    }
+}
+console.log(noms)
+
+const abordableElement = document.createElement("ul")
+
+const abordable = document.querySelector(".abordables").appendChild(abordableElement)
+
+For(let i=0 ; i < noms.length; i++){
+    const nomElement = document.createElement("li")
+    nomElement.innerText = noms[i].nom
+    abordableElement.appendChild(nomElement)
+}
