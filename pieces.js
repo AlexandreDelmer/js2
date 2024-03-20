@@ -1,21 +1,49 @@
-// Recuperation du tableau d'objet pieces
 const pieces = await fetch("pieces-autos.json").then(pieces => pieces.json())
 
-function genererPieces(pieces){
-    // Boucle pour générer toutes les fiches articles
-    for(let i = O; i < pieces.length ; i++){
+for(let i = 0 ; i < pieces.length ; i++){
+    const sectionFiches = document.querySelector(".fiches")
 
-        // Créer la div Article
-        const piecesElement = document.createElement("article")
-        document.body.appendChild(piecesElement)
+    const article = pieces[i]
 
-        // Créer le titre H2 de l'article
-        const nomElement = document.createElement("h2")
-        nomElement.innerText = pieces[i].nom
-        piecesElement.appendChild(nomElement)
-    }
+    const piecesElement = document.createElement("article")
+    sectionFiches.appendChild(piecesElement)
 
-    console.log(nomElement)
+    const nomElement = document.createElement("h2")
+    nomElement.innerText = article.nom
+    piecesElement.appendChild(nomElement)
+
+    const imageElement = document.createElement("img")
+    imageElement.src = article.image
+    piecesElement.appendChild(imageElement)
+
+    const prixElement = document.createElement("p")
+    prixElement.innerText = `Prix : ${article.prix}€`
+    piecesElement.appendChild(prixElement)
+
+    const categorieElement = document.createElement("p")
+    categorieElement.innerText = article.categorie
+    piecesElement.appendChild(categorieElement)
+
+    const descriptionElement = document.createElement("p")
+    descriptionElement.innerText = article.description ?? "Pas de description pour le moment"
+    piecesElement.appendChild(descriptionElement)
+
+    const disponibiliteElement = document.createElement("p")
+    disponibiliteElement.innerText = article.disponibilite ? "En stock" : "Rupture de stock"
+    piecesElement.appendChild(disponibiliteElement)
+
 }
 
-genererPieces(pieces)
+const btnTrier = document.querySelector(".btn-trier")
+
+btnTrier.addEventListener("click", function() {
+})
+
+
+
+
+
+const btnFiltrees = document.querySelector(".btn-filtrer")
+
+
+
