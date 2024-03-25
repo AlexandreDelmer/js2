@@ -47,9 +47,9 @@ function displayAvailableArticle(element){
     const availableArticle = element.filter(function (element) {
         return element.disponibilite === true
     })
-}
 
-displayAvailableArticle(pieces)
+    displayElements(availableArticle)    
+}
 
 //Trie des articles par prix croissant
 const btnTrier = document.querySelector(".btn-trier")
@@ -64,7 +64,6 @@ const btnFiltrees = document.querySelector(".btn-filtrer")
 
 btnFiltrees.addEventListener("click", () => {
     displayAvailableArticle(pieces)
-    displayElements(availableArticle)
 })
 
 
